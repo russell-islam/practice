@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("This is my first commit and changed");
+		Matrix.print_2d_matrix(Matrix.get2DMatrix(3, 3), 3, 3);
 
 	}
 
