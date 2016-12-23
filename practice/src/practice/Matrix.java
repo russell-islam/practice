@@ -22,5 +22,52 @@ public class Matrix {
 			System.out.println(out);
 		}
 	}
+	static void print_rotate(int[][] mat, int r, int c)
+	{
+		int row = 0, col = 0, prev, cur, i;
+		int m = r, n = c;
+		while ( row < m && col < n)
+		{
+			if (row + 1 == m || col + 1 == n)
+		            break;
+			prev = mat[row + 1][col];
+			for( i = col; i < n; i++)
+			{
+				cur = mat[row][i];
+				mat[row][i] = prev;
+				prev = cur;
+			}
+			row++;
+			for(i = row; i < m; i++)
+			{
+				cur = mat[i][n-1];
+				mat[i][n-1] = prev;
+				prev = cur;
+			}
+			n--;
+			if ( row < m)
+			{
+				for( i = n-1; i>=col; i--)
+				{
+					cur = mat[m-1][i];
+					mat[m-1][i] = prev;
+					prev = cur;
+				}
+			}
+			m--;
+			if ( col < n)
+			{
+				for( i = m-1; i>=row; i--)
+				{
+					cur = mat[i][col];
+					mat[i][col] = prev;
+					prev = cur;
+				}
+			}
+			col++;
+			
+		}
+		print_2d_matrix(mat, r, c);
+	}
 
 }
