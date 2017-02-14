@@ -18,7 +18,11 @@ public class Matrix {
 		{
 			out = "";
 			for( int j = 0; j < c; j++)
-				out += mat[i][j] + ",";
+			{
+				out += mat[i][j];
+				if(j!=c-1)
+					out += ",";
+			}
 			System.out.println(out);
 		}
 	}
@@ -29,7 +33,7 @@ public class Matrix {
 		while ( row < m && col < n)
 		{
 			if (row + 1 == m || col + 1 == n)
-		            break;
+				break;
 			prev = mat[row + 1][col];
 			for( i = col; i < n; i++)
 			{
