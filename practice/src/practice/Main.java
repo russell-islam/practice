@@ -12,7 +12,8 @@ int[][] mat = Matrix.get2DMatrix(4, 4);
 
 	public static void main(String[] args) {
 		
-		System.out.println(Math_prb.find_sqrt(Integer.MAX_VALUE));
+		String out = String_prb.CompressString("aaaaaaaaaaaaaabbcccccccccccccd");
+		out = String_prb.DecompressString(out);
 	}
 
 }

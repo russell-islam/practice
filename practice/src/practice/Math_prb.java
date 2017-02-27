@@ -7,7 +7,7 @@ public class Math_prb {
 	{
 		if ( val ==0 || val == 1)
 			return val;
-		int start =2;
+		int start =1;
 		int  end = val/2;
 		if ( end > max_int_root)
 			end = max_int_root;
