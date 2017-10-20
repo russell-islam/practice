@@ -12,8 +12,10 @@ int[][] mat = Matrix.get2DMatrix(4, 4);
 
 	public static void main(String[] args) {
 		
-		String out = String_prb.CompressString("aaaaaaaaaaaaaabbcccccccccccccd");
-		out = String_prb.DecompressString(out);
+		//String out = String_prb.CompressString("aaaaaaaaaaaaaabbcccccccccccccd");
+		//out = String_prb.DecompressString(out);
+		//List_prb.test_list_string();
+		BST.test();
 	}
 
 }
