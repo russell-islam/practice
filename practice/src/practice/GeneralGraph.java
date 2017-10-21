@@ -5,7 +5,9 @@ import java.util.LinkedList;
 
 
 public class GeneralGraph {
+	
 	public GeneralGraph(){};
+	
 	class Graph
 	{
 		Node nodes[];
