@@ -68,6 +68,7 @@ public class GeneralGraph {
 	{
 		int key;
 		int color;
+		int value;
 		LinkedList<Edge> adj;
 		public Node(int v)
 		{

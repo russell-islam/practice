@@ -16,7 +16,8 @@ int[][] mat = Matrix.get2DMatrix(4, 4);
 		//out = String_prb.DecompressString(out);
 		//List_prb.test_list_string();
 		//BST.test();
-		GeneralGraph.main();
+		//GeneralGraph.main();
+		LinkList.test();
 	}
 
 }
