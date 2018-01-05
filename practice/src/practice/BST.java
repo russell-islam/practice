@@ -27,8 +27,24 @@ public class BST {
 	}
 	public static void test()
 	{
-		BST test = new BST(150);
-		test.PrintInOrder();
+		
+
+		BST bst = new BST();
+		/*
+		TreeNode bt = bst.CreateBinaryTree();
+		System.out.println(bst.isBST(bt));
+		TreeNode st = bst.createBST();
+		System.out.println(bst.isBST(bt));
+		TreeNode pbt = bst.createPerfectBinaryTree();
+		System.out.println(bst.heightBST(bt));
+		System.out.println(bst.heightBST(st));
+		System.out.println(bst.heightBST(pbt));
+		System.out.println(bst.isPerfect(bt));
+		System.out.println(bst.isPerfect(st));
+		System.out.println(bst.isPerfect(pbt));
+		*/
+		TreeNode pbt = bst.createPerfectBinaryTree();
+		bst.morris_traversal(pbt);
 	}
 	/*
 	 * 			  1
@@ -81,15 +97,78 @@ public class BST {
 		TreeNode node15 = new TreeNode(15, 30, 31);
 		
 		TreeNode node4 = new TreeNode(4, node8, node9);
-		TreeNode node5 = new TreeNode(4, node10, node11);
-		TreeNode node6 = new TreeNode(4, node12, node13);
-		TreeNode node7 = new TreeNode(4, node14, node15);
+		TreeNode node5 = new TreeNode(5, node10, node11);
+		TreeNode node6 = new TreeNode(6, node12, node13);
+		TreeNode node7 = new TreeNode(7, node14, node15);
 		
-		TreeNode node2 = new TreeNode(4, node4, node5);
-		TreeNode node3 = new TreeNode(4, node6, node7);
+		TreeNode node2 = new TreeNode(2, node4, node5);
+		TreeNode node3 = new TreeNode(3, node6, node7);
 		return new TreeNode(1, node2, node3);
 	}
-
+	public boolean isBST(TreeNode root)
+	{
+		if (root == null)
+			return true;
+		TreeNode left = root.left;
+		TreeNode right = root.right;
+		if (left == null && right !=null && root.key > right.key)
+			return false;
+		if (left != null && right ==null && root.key < left.key)
+			return false;
+		if(left !=null & right!=null)
+		{
+			if (root.key > right.key || root.key < left.key)
+				return false;
+		}
+		return isBST(left) && isBST(right);
+	}
+	public boolean isPerfect(TreeNode root)
+	{
+		if(root == null)
+			return true;
+		int lh = heightBST(root.left);
+		int rh = heightBST(root.right);
+		return lh == rh && isPerfect(root.left) && isPerfect(root.right);
+	}
+	public int heightBST(TreeNode root)
+	{
+		if (root == null)
+			return 0;
+		int lh = 1 + heightBST(root.left);
+		int rh = heightBST(root.right);
+		return Math.max(lh, rh);
+	}
+	public void morris_traversal(TreeNode root)
+	{
+		if(root == null)
+			return;
+		TreeNode current = root;
+		while(current != null)
+		{
+			if(current.left == null)
+			{
+				System.out.println(current.key);
+				current = current.right;
+			}
+			else
+			{
+				TreeNode pre = current.left;
+				while(pre.right !=null && pre.right != current)
+					pre = pre.right;
+				if (pre.right == null)
+				{
+					pre.right = current;
+					current =  current.left;
+				}
+				else
+				{
+					pre.right = null;
+					System.out.println(current.key);
+					current = current.right;
+				}
+			}
+		}
+	}
 }
 class TreeNode {
 	public int key;
