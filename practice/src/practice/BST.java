@@ -43,18 +43,44 @@ public class BST {
 		System.out.println(bst.isPerfect(st));
 		System.out.println(bst.isPerfect(pbt));
 		*/
-		TreeNode pbt = bst.createPerfectBinaryTree();
-		bst.morris_traversal(pbt);
+		bst.flatten_test();
+	}
+	private TreeNode flattenHelper(TreeNode root)
+	{
+		if (root == null || (root.left == null && root.right == null))
+			return root;
+		TreeNode lbt = flattenHelper(root.left);
+		TreeNode rbt = flattenHelper(root.right);
+        if (lbt !=null) lbt.right = root.right;
+        if (root.left != null)
+        	root.right = root.left; 
+        root.left = null;
+        
+        if (rbt != null) 
+        	return rbt; 
+		return lbt;
+			
+	}
+	public void flatten_test()
+	{
+		TreeNode root = this.CreateBinaryTree();
+		flattenHelper(root);
+		TreeNode p = root;
+		while(p!=null)
+		{
+			System.out.println(p.key);
+			p = p.right;
+		}
 	}
 	/*
 	 * 			  1
-	 * 		2			3
-	 *	3		4	5		6
+	 * 		2			5
+	 *	3		4	6		7
 	 */
 	public TreeNode CreateBinaryTree()
 	{
 		TreeNode node2 = new TreeNode(2, 3, 4);
-		TreeNode node3 = new TreeNode(2, 5, 6);
+		TreeNode node3 = new TreeNode(5, 6, 7);
 		return new TreeNode(1, node2, node3);
 	}
 	/*
