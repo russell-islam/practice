@@ -33,7 +33,7 @@ public class Main {
 		//System.out.println(res);
 		//GeneralGraph.main();
 		//LinkList.test();
-		BST.test();
+		SortingUtil.test();
 	}
 
 }

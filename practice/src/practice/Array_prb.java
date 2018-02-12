@@ -84,5 +84,11 @@ public class Array_prb {
 		}
 		return -1;
 	}
+	static void swap(int[] array, int i, int j)
+	{
+		int tmp = array[i];
+		array[i] = array[j];
+		array[j] = tmp;
+	}
 
 }

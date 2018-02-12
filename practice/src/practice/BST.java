@@ -1,5 +1,7 @@
 package practice;
 
+import java.util.Currency;
+import java.util.Stack;
 
 public class BST {
 	TreeNode root;
@@ -43,7 +45,8 @@ public class BST {
 		System.out.println(bst.isPerfect(st));
 		System.out.println(bst.isPerfect(pbt));
 		*/
-		bst.flatten_test();
+		TreeNode root = bst.CreateBinaryTree();
+		bst.postOrderTraversal(root);
 	}
 	private TreeNode flattenHelper(TreeNode root)
 	{
@@ -163,6 +166,87 @@ public class BST {
 		int lh = 1 + heightBST(root.left);
 		int rh = heightBST(root.right);
 		return Math.max(lh, rh);
+	}
+	public void inOrderIterative(TreeNode root)
+	{
+		Stack<TreeNode> st = new Stack<TreeNode>();
+		TreeNode cur = root;
+		while(cur != null)
+		{
+			st.push(cur);
+			cur = cur.left;
+		}
+		while(st.size() > 0)
+		{
+			cur = st.pop();
+			System.out.println(cur.key);
+			if (cur.right != null)
+			{
+				cur = cur.right;
+				while(cur != null)
+				{
+					st.push(cur);
+					cur = cur.right;
+				}
+			}
+			
+		}
+	}
+	public void postOrderTraversal(TreeNode root)
+	{
+		if (root == null)
+			return;
+		Stack<TreeNode> st = new Stack<TreeNode>();
+		TreeNode cur = root;
+		TreeNode temp;
+		while (cur != null || st.size() > 0)
+		{
+			if (cur != null)
+			{
+				st.push(cur);
+				cur = cur.left;
+			}
+			else
+			{
+				temp = st.peek().right;
+				if (temp == null)
+				{
+					temp = st.pop();
+					System.out.println(temp.key);
+					while( st.size() > 0 && temp == st.peek().right)
+					{
+						temp = st.pop();
+						System.out.println(temp.key);
+						
+					}
+				}
+				else
+				{
+					cur = temp;
+				}
+			}
+		}
+	}
+	public void preOrderIterative(TreeNode root)
+	{
+		Stack<TreeNode> st = new Stack<TreeNode>();
+		TreeNode cur = root;
+		st.push(cur);
+		while(st.size() > 0)
+		{
+			cur = st.pop();
+			System.out.println(cur.key);
+			if (cur.right != null)
+			{
+				st.push(cur.right);
+			}
+			if (cur.left != null)
+			{
+				st.push(cur.left);
+			}
+			
+			
+		}
 	}
 	public void morris_traversal(TreeNode root)
 	{
