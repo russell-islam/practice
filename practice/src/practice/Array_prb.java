@@ -17,7 +17,7 @@ public class Array_prb {
 		for ( int i = 0; i < arr.length; i++)
 			print_array(arr[i]);
 	}
-	static void trest_array_reduce()
+	static void test_array_reduce()
 	{
 		int arr[] = {1,2,3,4,5,6,4,2,3, 4};
 		int len =  arr.length;

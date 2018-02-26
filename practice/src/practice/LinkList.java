@@ -1,5 +1,6 @@
 package practice;
 
+
 public class LinkList {
 	private ListNode head;
 	public LinkList()
@@ -33,10 +34,25 @@ public class LinkList {
 	}
 	public void insertSorted(int key)
 	{
+		// Ascending
 		if(this.head == null)
 		{
 			this.head = new ListNode(key);
 			return;
+		}
+		ListNode n = new ListNode(key);
+		ListNode cur = head;
+		while ( cur.next != null && cur.next.key < key)
+			cur = cur.next;
+		if (cur == head)
+		{
+			n.next = head;
+			head = n;
+		}
+		else
+		{
+			n.next = cur.next;
+			cur.next = n;
 		}
 	}
 	public void printList()
@@ -50,14 +66,21 @@ public class LinkList {
 			out += p.key;
 			if(p.next != null)
 				out += "-->";
+			p = p.next;
 		}
 		System.out.println(out);
 	}
 	public static void test()
 	{
 		LinkList test = new LinkList(10);
-		test.insertFirst(5);
-		test.insertLast(15);
+		test.insertSorted(5);
+		test.insertSorted(15);
+		test.insertSorted(25);
+		test.insertSorted(2);
+		test.insertSorted(12);
+		test.insertSorted(50);
+		test.insertSorted(100);
+		test.insertSorted(80);
 		test.printList();
 	}
 }
