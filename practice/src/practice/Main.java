@@ -32,8 +32,8 @@ public class Main {
 		//int res = Multiply(10, 15);
 		//System.out.println(res);
 		//GeneralGraph.main();
-		//LinkList.test();
-		Island.test();
+		DynamicProgramming.test();
+		//StackQueueTest.test();
 	}
 
 }

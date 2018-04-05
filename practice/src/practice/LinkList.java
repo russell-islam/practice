@@ -11,7 +11,7 @@ public class LinkList {
 	{
 		this.head = new ListNode(key);
 	}
-	public void insertLast(int key)
+	public void insertTail(int key)
 	{
 		if(this.head == null)
 		{
@@ -23,7 +23,7 @@ public class LinkList {
 			p = p.next;
 		p.next = new ListNode(key);
 	}
-	public void insertFirst(int key)
+	public void insertHead(int key)
 	{
 		if(this.head == null)
 		{
@@ -40,16 +40,20 @@ public class LinkList {
 			this.head = new ListNode(key);
 			return;
 		}
+
 		ListNode n = new ListNode(key);
-		ListNode cur = head;
-		while ( cur.next != null && cur.next.key < key)
-			cur = cur.next;
-		if (cur == head)
+		if(head.key>= key)
 		{
 			n.next = head;
 			head = n;
+			return;
 		}
-		else
+		ListNode cur = head;
+		// Move cur as long as cure.next is greater such that cur < key < cur.next
+		while ( cur.next != null && cur.next.key < key)
+		{
+			cur = cur.next;
+		}
 		{
 			n.next = cur.next;
 			cur.next = n;
@@ -73,8 +77,9 @@ public class LinkList {
 	public static void test()
 	{
 		LinkList test = new LinkList(10);
-		test.insertSorted(5);
+	
 		test.insertSorted(15);
+		test.insertSorted(5);
 		test.insertSorted(25);
 		test.insertSorted(2);
 		test.insertSorted(12);
