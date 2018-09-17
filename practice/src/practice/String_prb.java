@@ -56,5 +56,43 @@ public class String_prb {
 		}
 		return out;
 	}
+	static int longestNonRepeatingSubstring(String st)
+	{
+		int len = st.length();
+		int prev_index = -1;
+		int cur_len = 1;
+		int max_len = 1;
+		int visited[] = new int [256];
+		int i;
+		for (i = 0; i < 256; i++)
+		{
+			visited[i] = -1;
+		}
+		visited[st.charAt(0)] = 0;
+		for ( i = 1; i < len ; i ++)
+		{
+			prev_index = visited[st.charAt(i)];
+			if ( prev_index == -1 || i - cur_len > prev_index)
+			{
+				cur_len++;
+			}
+			else
+			{
+				if (cur_len > max_len)
+					max_len = cur_len;
+				cur_len = i - prev_index;
+			}
+			visited[st.charAt(i)] = i;
+		}
+		if(cur_len > max_len)
+            max_len = cur_len;
+         
+        return max_len;
+	}
+	static void test()
+	{
+		int out = longestNonRepeatingSubstring("PQSTPRQMNO");
+		System.out.println(out);
+	}
 
 }
