@@ -33,7 +33,9 @@ public class Main {
 		//System.out.println(res);
 		//GeneralGraph.main();
 		//DynamicProgramming.test();
-		String_prb.test();
+		//String_prb.test();
+		//SortingUtil.test();
+		Island.test();
 		//StackQueueTest.test();
 	}
 
