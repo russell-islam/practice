@@ -1,31 +1,66 @@
 package practice;
 
-import java.util.Currency;
 import java.util.Stack;
 
 public class BST {
-	TreeNode root;
-	public BST(int rootKey){
-		this.root = new TreeNode(rootKey);
-	}
-	public BST(TreeNode node){
-		this.root = node;
-	}
 	public BST(){};
 	
-	private void PrintInOrderUtil(TreeNode node)
-	{
-		if (node == null)
-			return;
-		PrintInOrderUtil(node.left);
-		System.out.print(node.key);
-		System.out.print(" ");
-		PrintInOrderUtil(node.right);
-	}
-	public void PrintInOrder()
+	
+	public void PrintInOrder(TreeNode root)
 	{
 		
-		this.PrintInOrderUtil(root);
+		if (root == null)
+			return;
+		PrintInOrder(root.left);
+		System.out.print(root.key);
+		System.out.print(" ");
+		PrintInOrder(root.right);
+	}
+	public void PrintPreOrder(TreeNode root)
+	{
+		
+		if (root == null)
+			return;
+		
+		System.out.print(root.key);
+		System.out.print(" ");
+		PrintPreOrder(root.left);
+		PrintPreOrder(root.right);
+	}
+	public void PrintPostOrder(TreeNode root)
+	{
+		
+		if (root == null)
+			return;
+		PrintPostOrder(root.left);
+		PrintPostOrder(root.right);
+		System.out.print(root.key);
+		System.out.print(" ");
+		
+	}
+	private int inorderSuccessor(TreeNode root, int key)
+	{
+		return key;
+	}
+	private int inorderPredessor(TreeNode root, int key)
+	{
+		return key;
+	}
+	private int preorderSuccessor(TreeNode root, int key)
+	{
+		return key;
+	}
+	private int preorderPredessor(TreeNode root, int key)
+	{
+		return key;
+	}
+	private int postorderSuccessor(TreeNode root, int key)
+	{
+		return key;
+	}
+	private int postorderPredessor(TreeNode root, int key)
+	{
+		return key;
 	}
 	public static void test()
 	{
@@ -46,7 +81,8 @@ public class BST {
 		System.out.println(bst.isPerfect(pbt));
 		*/
 		TreeNode root = bst.CreateBinaryTree();
-		bst.postOrderTraversal(root);
+		bst.PrintPreOrder(root);
+		bst.preOrderIterative(root);
 	}
 	private TreeNode flattenHelper(TreeNode root)
 	{
@@ -186,7 +222,7 @@ public class BST {
 				while(cur != null)
 				{
 					st.push(cur);
-					cur = cur.right;
+					cur = cur.left;
 				}
 			}
 			

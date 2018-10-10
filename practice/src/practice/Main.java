@@ -35,7 +35,8 @@ public class Main {
 		//DynamicProgramming.test();
 		//String_prb.test();
 		//SortingUtil.test();
-		Island.test();
+		//Array_prb.test();
+		IntegerProblem.test();
 		//StackQueueTest.test();
 	}
 
