@@ -36,7 +36,8 @@ public class Main {
 		//String_prb.test();
 		//SortingUtil.test();
 		//Array_prb.test();
-		IntegerProblem.test();
+		//IntegerProblem.test();
+		GeneralGraph.main();
 		//String_prb.test();
 		//StackQueueTest.test();
 	}
