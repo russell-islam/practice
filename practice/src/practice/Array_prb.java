@@ -101,12 +101,7 @@ public class Array_prb {
 		return -1;
         
     }
-	static void test()
-	{
-		int[] arr = {-1,-1,-1,-1,-1,0};
-		int ind = pivotIndex(arr);
-		System.out.println(ind);
-	}
+	
 	static int test_subset_sum_exact_length(int[] arr, int start, int sum)
 	{
 		if ( sum < 0)
@@ -125,11 +120,90 @@ public class Array_prb {
 		}
 		return -1;
 	}
+	public static int removeDuplicates(int[] nums) {
+		int i, count=0;
+		
+		for ( i = 0; i < nums.length; i++)
+		{
+			while(i < nums.length - 1 && nums[i] == nums[i+1])
+				i++;
+			nums[count++] = nums[i];
+		}
+		return count;
+        
+    }
 	static void swap(int[] array, int i, int j)
 	{
 		int tmp = array[i];
 		array[i] = array[j];
 		array[j] = tmp;
+	}
+	public static int searchBin(int[] nums, int low,int high, int target)
+	{
+		if (nums.length == 0)
+			return 0;
+		if (target < nums[low])
+			return low;
+		if (target > nums[high])
+			return high + 1;
+		int mid = (low + high) / 2;
+		if(nums[mid] == target)
+			return mid;
+		if ( target > nums[mid])
+		{
+			return searchBin(nums, mid + 1, high, target );
+		}
+		return searchBin(nums, low, mid -1, target );
+	}
+	/*
+	 * 		Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+			
+			You may assume no duplicates in the array.
+			
+			Example 1:
+			
+			Input: [1,3,5,6], 5
+			Output: 2
+			
+			Example 2:
+			
+			Input: [1,3,5,6], 2
+			Output: 1
+			
+			Example 3:
+			
+			Input: [1,3,5,6], 7
+			Output: 4
+			
+			Example 4:
+			
+			Input: [1,3,5,6], 0
+			Output: 0
+
+
+	 */
+	public static int searchInsert(int[] nums, int target) {
+        return searchBin(nums, 0, nums.length-1, target);
+    }
+	public static int maximumSumSubArray(int [] nums)
+	{
+		if (nums.length == 0)
+			return 0;
+		int maxGLobal = nums[0];
+		int maxCurrent = nums[0];
+		for (int i =1; i < nums.length; i++)
+		{
+			maxCurrent = Math.max(nums[i], maxCurrent + nums[i]);
+			if (maxCurrent > maxGLobal)
+				maxGLobal = maxCurrent;
+		}
+		return maxGLobal;
+	}
+	static void test()
+	{
+		int[] arr = {2,1,-3,4,-1,2,1,-5,4};
+		int out = maximumSumSubArray(arr);
+		System.out.println(out);
 	}
 
 }

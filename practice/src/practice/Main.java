@@ -36,9 +36,10 @@ public class Main {
 		//String_prb.test();
 		//SortingUtil.test();
 		//Array_prb.test();
+		//LinkList.test();
 		//IntegerProblem.test();
-		GeneralGraph.main();
-		//String_prb.test();
+		//GeneralGraph.main();
+		String_prb.test();
 		//StackQueueTest.test();
 	}
 

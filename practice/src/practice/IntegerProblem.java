@@ -42,6 +42,49 @@ public class IntegerProblem {
 		}
 		return x == revert || x == revert/10;
 	}
+	public static int atoi(String str)
+	{
+		str = str.trim();
+		if (str.length() == 0)
+			return 0;
+		char first = str.charAt(0);
+		int sign = 1;
+		int ret = 0;
+		int firstCharDigit = 0;
+		int i = 0;
+		if (!Character.isDigit(first))
+		{
+			firstCharDigit = 1;
+			if( first == '-')
+				sign = -1;
+			else if ( first != '+')
+				return 0;
+            else
+                sign = 1;
+                
+		}
+		i += firstCharDigit;
+		int cur;
+        if ( i>= str.length())
+            return 0;
+		if (Character.isDigit(str.charAt(i)))
+		{
+			ret = sign * Character.getNumericValue(str.charAt(i));
+			
+		}
+		else
+			return 0;
+		i++;
+		for(; i < str.length() && Character.isDigit(str.charAt(i)); i++)
+		{
+			cur = Character.getNumericValue(str.charAt(i));
+			
+			if (ret > Integer.MAX_VALUE/10 || (ret == Integer.MAX_VALUE / 10 && cur > 7)) return Integer.MAX_VALUE;
+            if (ret < Integer.MIN_VALUE/10 || (ret == Integer.MIN_VALUE / 10 && cur >= 8)) return Integer.MIN_VALUE;
+			ret = ret * 10 + cur * sign;
+		}
+		return ret;
+	}
 	private static int get_roman_hlp(char c)
 	{
 		switch(c) {
@@ -155,8 +198,9 @@ public class IntegerProblem {
 	}
 	public static void test()
 	{
-		int[] nums = {7,8,9,11,12};
-		System.out.println(firstMissingPositive2(nums));
+		//int[] nums = {7,8,9,11,12};
+		//System.out.println(firstMissingPositive2(nums));
+		System.out.println(atoi("-2147483649"));
 		/*
 		int out = reverse(1534236469);
 		out = reverse(12345);
