@@ -1,5 +1,8 @@
 package practice;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class IntegerProblem {
 	
 	public static int reverse(int x) {
@@ -81,9 +84,79 @@ public class IntegerProblem {
 		}
 		return sum;
 	}
+	/*
+	 * Given an unsorted integer array, find the smallest missing positive integer.
+
+			Example 1:
+			
+			Input: [1,2,0]
+			Output: 3
+			
+			Example 2:
+			
+			Input: [3,4,-1,1]
+			Output: 2
+			
+			Example 3:
+			
+			Input: [7,8,9,11,12]
+			Output: 1
+			
+			Note:
+			
+			Your algorithm should run in O(n) time and uses constant extra space.
+
+	 */
+	public static int firstMissingPositive(int[] nums) {
+        int max = 0;
+        int i ;
+        if (nums.length == 0)
+        	return 1;
+        max = nums[0];
+        for (i =0; i< nums.length; i++)
+        {
+        	if (max < nums[i])
+        		max = nums[i];
+        }
+        if (max < nums.length)
+        	max = nums.length;
+        int[] dp = new int[max + 2];
+        for (i = 0; i < dp.length; i++)
+        	dp[i] = -1;
+        for (i = 0; i < nums.length; i++)
+        {
+        	if (nums[i] <=0)
+        		continue;
+        	dp[nums[i]] = 1;
+        }
+        for (i = 1; i < dp.length; i++)
+        	if (dp[i] == -1)
+        		return i;
+        return -1;
+        
+    }
+	public static int firstMissingPositive2(int[] nums) {
+		if (nums.length == 0)
+        	return 1;
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		int max = nums[0];
+		for( int x: nums)
+		{
+			if ( x <= 0)
+				continue;
+			if (max < x)
+				max =x;
+			map.put(x, 1);
+		}
+		for ( int i =1; i <= max + 1 ; i++)
+			if(!map.containsKey(i))
+				return i;
+		return -1;
+	}
 	public static void test()
 	{
-		System.out.println(romanGeneration("MCMXCIV"));
+		int[] nums = {7,8,9,11,12};
+		System.out.println(firstMissingPositive2(nums));
 		/*
 		int out = reverse(1534236469);
 		out = reverse(12345);

@@ -1,5 +1,7 @@
 package practice;
 
+import java.util.Stack;
+
 public class String_prb {
 	
 	static String CompressString(String in)
@@ -89,10 +91,66 @@ public class String_prb {
          
         return max_len;
 	}
+	private static String getCount(String in)
+	{
+		char[] arr = in.toCharArray();
+		int i, j, count;
+		String out = "";
+		for(i = 0; i < arr.length; i++)
+		{
+			count = 1;
+			for ( j= i +1; j < arr.length && arr[i] == arr[j]; j++)
+				count++;
+			
+			out = out + count + arr[i];
+			if (count > 1)
+			{
+				i += count -1;
+			}
+		}
+		return out;
+	}
+	public static String countAndSay(int n) {
+		String res = "1";
+		for (int i = 1; i <n ; i++)
+			res = getCount(res);
+		return res;
+    }
+	public static boolean isValid(String s)
+	{
+        Stack<Character> st = new Stack<Character>();
+        int i = 0;
+        char pop, cur;
+        for (i = 0; i< s.length(); i++)
+        {
+        	cur = s.charAt(i);
+        	if (cur == '(' || cur == '[' || cur ==  '{')
+        	{
+        		st.push(cur);
+        	}
+        	else
+        	{
+        		if(st.isEmpty())
+        			return false;
+        		pop = st.pop();
+        		if (cur == '}' && pop != '{')
+        			return false;
+        		if (cur == ')' && pop != '(')
+        			return false;
+        		if (cur == ']' && pop != '[')
+        			return false;
+        	}
+        }
+        if (st.empty())
+        	return true;
+        return false;
+        
+        
+    }
 	static void test()
 	{
-		int out = longestNonRepeatingSubstring("PQSTPRQMNO");
-		System.out.println(out);
+		
+		System.out.println(isValid("([)]"));
 	}
 
 }

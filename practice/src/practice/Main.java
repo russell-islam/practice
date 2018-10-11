@@ -37,6 +37,7 @@ public class Main {
 		//SortingUtil.test();
 		//Array_prb.test();
 		IntegerProblem.test();
+		//String_prb.test();
 		//StackQueueTest.test();
 	}
 
