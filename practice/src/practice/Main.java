@@ -39,8 +39,10 @@ public class Main {
 		//LinkList.test();
 		//IntegerProblem.test();
 		//GeneralGraph.main();
-		String_prb.test();
+		//String_prb.test();
+		//Math_prb.test();
 		//StackQueueTest.test();
+		BST.test();
 	}
 
 }

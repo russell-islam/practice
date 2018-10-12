@@ -1,5 +1,7 @@
 package practice;
 
+import java.util.Arrays;
+
 public class Array_prb {
 	static void print_array(int[] arr)
 	{
@@ -199,11 +201,89 @@ public class Array_prb {
 		}
 		return maxGLobal;
 	}
+	/*
+	 * Given a non-empty array of digits representing a non-negative integer, plus one to the integer.
+
+		The digits are stored such that the most significant digit is at the head of the list, and each element in the array contain a single digit.
+		
+		You may assume the integer does not contain any leading zero, except the number 0 itself.
+		
+		Example 1:
+		
+		Input: [1,2,3]
+		Output: [1,2,4]
+		Explanation: The array represents the integer 123.
+		
+		Example 2:
+		
+		Input: [4,3,2,1]
+		Output: [4,3,2,2]
+		Explanation: The array represents the integer 4321.
+
+
+	 */
+	public static int[] plusOne(int[] digits) {
+        if (digits.length == 0)
+        {
+        	return new int[] {1};
+        }
+        int cur, carry = 1, i;
+        for (i = digits.length -1; i >=0; i--)
+        {
+        	cur = digits[i] + carry;
+        	digits[i] = cur % 10;
+        	carry = cur / 10;
+        }
+        if ( carry ==1)
+        {
+        	int[] arr = new int [digits.length + 1];
+        	arr[0] = carry;
+        	for (i =0; i < digits.length; i++)
+        		arr[i+1] = digits[i];
+        	return arr;
+        }
+        return digits;
+        
+    }
+	public static void mergeTwoSortedArray(int[] nums1, int m, int[] nums2, int n) {
+        int c = m + n -1;
+        int i = m -1;
+        int j = n -1, max;
+        for (; i>= 0 || j >= 0;)
+        {
+        	if ( i >= 0 && j >= 0)
+        	{
+        		if (nums1[i] > nums2[j])
+        		{
+        			max = nums1[i];
+        			i--;
+        		}
+        		else
+        		{
+        			max = nums2[j];
+        			j--;
+        		}
+        	}
+        	else if ( i < 0)
+        	{
+        		max = nums2[j];
+        		j--;
+        	}
+        	else
+        	{
+        		max = nums1[i];
+        		i--;
+        	}
+        	nums1[c--] = max;
+        }
+    }
 	static void test()
 	{
-		int[] arr = {2,1,-3,4,-1,2,1,-5,4};
-		int out = maximumSumSubArray(arr);
-		System.out.println(out);
+		int[] nums1 = {1,2,3,0,0,0};
+		//int[] nums2 = {2,5,6};
+		int[] nums2 = {};
+		mergeTwoSortedArray(nums1, 3, nums2, nums2.length);
+		System.out.println(Arrays.toString((nums1)));
 	}
 
 }

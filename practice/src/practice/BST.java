@@ -12,7 +12,7 @@ public class BST {
 		if (root == null)
 			return;
 		PrintInOrder(root.left);
-		System.out.print(root.key);
+		System.out.print(root.val);
 		System.out.print(" ");
 		PrintInOrder(root.right);
 	}
@@ -22,7 +22,7 @@ public class BST {
 		if (root == null)
 			return;
 		
-		System.out.print(root.key);
+		System.out.print(root.val);
 		System.out.print(" ");
 		PrintPreOrder(root.left);
 		PrintPreOrder(root.right);
@@ -34,7 +34,7 @@ public class BST {
 			return;
 		PrintPostOrder(root.left);
 		PrintPostOrder(root.right);
-		System.out.print(root.key);
+		System.out.print(root.val);
 		System.out.print(" ");
 		
 	}
@@ -80,9 +80,13 @@ public class BST {
 		System.out.println(bst.isPerfect(st));
 		System.out.println(bst.isPerfect(pbt));
 		*/
-		TreeNode root = bst.CreateBinaryTree();
-		bst.PrintPreOrder(root);
-		bst.preOrderIterative(root);
+		TreeNode root1 = bst.CreateBinaryTree();
+		TreeNode root2 = bst.CreateBinaryTree();
+		TreeNode root3 = bst.createPerfectBinaryTree();
+		System.out.println(bst.isSameTree(root1, root2));
+		System.out.println(bst.isSameTree(root1, null));
+		System.out.println(bst.isSameTree(null, root2));
+		System.out.println(bst.isSameTree(root1, root3));
 	}
 	private TreeNode flattenHelper(TreeNode root)
 	{
@@ -107,7 +111,7 @@ public class BST {
 		TreeNode p = root;
 		while(p!=null)
 		{
-			System.out.println(p.key);
+			System.out.println(p.val);
 			p = p.right;
 		}
 	}
@@ -176,13 +180,13 @@ public class BST {
 			return true;
 		TreeNode left = root.left;
 		TreeNode right = root.right;
-		if (left == null && right !=null && root.key > right.key)
+		if (left == null && right !=null && root.val > right.val)
 			return false;
-		if (left != null && right ==null && root.key < left.key)
+		if (left != null && right ==null && root.val < left.val)
 			return false;
 		if(left !=null & right!=null)
 		{
-			if (root.key > right.key || root.key < left.key)
+			if (root.val > right.val || root.val < left.val)
 				return false;
 		}
 		return isBST(left) && isBST(right);
@@ -215,7 +219,7 @@ public class BST {
 		while(st.size() > 0)
 		{
 			cur = st.pop();
-			System.out.println(cur.key);
+			System.out.println(cur.val);
 			if (cur.right != null)
 			{
 				cur = cur.right;
@@ -248,11 +252,11 @@ public class BST {
 				if (temp == null)
 				{
 					temp = st.pop();
-					System.out.println(temp.key);
+					System.out.println(temp.val);
 					while( st.size() > 0 && temp == st.peek().right)
 					{
 						temp = st.pop();
-						System.out.println(temp.key);
+						System.out.println(temp.val);
 						
 					}
 				}
@@ -271,7 +275,7 @@ public class BST {
 		while(st.size() > 0)
 		{
 			cur = st.pop();
-			System.out.println(cur.key);
+			System.out.println(cur.val);
 			if (cur.right != null)
 			{
 				st.push(cur.right);
@@ -293,7 +297,7 @@ public class BST {
 		{
 			if(current.left == null)
 			{
-				System.out.println(current.key);
+				System.out.println(current.val);
 				current = current.right;
 			}
 			else
@@ -309,30 +313,41 @@ public class BST {
 				else
 				{
 					pre.right = null;
-					System.out.println(current.key);
+					System.out.println(current.val);
 					current = current.right;
 				}
 			}
 		}
 	}
+	public boolean isSameTree(TreeNode p, TreeNode q) {
+		if ( p== q)
+			return true;
+		else if ( p == null && q == null)
+        	return true;
+      
+		else if (p.val == q.val)
+    		return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+        
+        return false;
+    }
 }
 class TreeNode {
-	public int key;
+	public int val;
 	public TreeNode left;
 	public TreeNode right;
 	
 	public TreeNode(int key) {
-		this.key = key;
+		this.val = key;
 		this.left = null;
 		this.right = null;
 	}
 	public TreeNode(int key, TreeNode left, TreeNode right) {
-		this.key = key;
+		this.val = key;
 		this.left = left;
 		this.right = right;
 	}
 	public TreeNode(int key, int left, int right) {
-		this.key = key;
+		this.val = key;
 		this.left = new TreeNode(left);
 		this.right = new TreeNode(right);
 	}
@@ -341,11 +356,11 @@ class TreeNode {
 	{
 		if (node == null)
 			return new TreeNode(key);
-		if (node.key == key)
+		if (node.val == key)
 			System.out.println("Key conflict");
-		if (node.key > key)
+		if (node.val > key)
 			node.left = InsertBST(node.left, key);
-		if (node.key < key)
+		if (node.val < key)
 			node.right = InsertBST(node.right, key);
 		return node;
 	}

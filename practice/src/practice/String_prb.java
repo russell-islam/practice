@@ -239,11 +239,65 @@ public class String_prb {
         }
         return out.length();
     }
+	/*
+	 * Given two binary strings, return their sum (also a binary string).
+
+		The input strings are both non-empty and contains only characters 1 or 0.
+		
+		Example 1:
+		
+		Input: a = "11", b = "1"
+		Output: "100"
+		
+		Example 2:
+		
+		Input: a = "1010", b = "1011"
+		Output: "10101"
+
+
+	 */
+	public static String addBinary(String a, String b)
+	{
+		if (b.length() ==0)
+			return a;
+		if (a.length() == 0)
+			return b;
+		int i = a.length() -1, j= b.length() -1;
+		String ret = "";
+		int sum =0, carry =0, bit1, bit2;
+		for (;i >=0 || j>=0;)
+		{
+			bit1 =0;
+			bit2=0;
+			if ( i >= 0)
+			{
+				bit1 = Character.getNumericValue(a.charAt(i));
+			}
+			if (j >= 0)
+			{
+				bit2 = Character.getNumericValue(b.charAt(j));
+			}
+			sum = bit1 + bit2 + carry;
+			carry = 0;
+			if (sum >= 2)
+			{
+				sum = sum -2;
+				carry = 1;
+			}
+			ret = sum + ret;
+			i--;
+			j--;
+		}
+		if (carry ==1)
+			return "1" + ret;
+		return ret;
+	}
+	
 	static void test()
 	{
 		//String[] strs = {};
 		//String[] strs = {"flower","flow","flight"};
-		System.out.println(lengthOfLastWord("Hello World"));
+		System.out.println(addBinary("1011", "1010"));
 	}
 
 }
