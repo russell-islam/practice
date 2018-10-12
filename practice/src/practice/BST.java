@@ -320,7 +320,7 @@ public class BST {
 		}
 	}
 	public boolean isSameTree(TreeNode p, TreeNode q) {
-		if ( p== q)
+		if ( p == q)
 			return true;
 		else if ( p == null && q == null)
         	return true;
