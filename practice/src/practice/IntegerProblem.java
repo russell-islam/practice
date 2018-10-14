@@ -27,27 +27,17 @@ public class IntegerProblem {
 
 	 */
 	public static int reverse(int x) {
-		if (Integer.MAX_VALUE < x || Integer.MIN_VALUE > x)
-			return 0;
-        int sign = 1;
-        if (x < 0)
-        {
-            sign = -1;
-            x = x * sign;
-        }
-        int rem = 0;
-        int sum = 0;
-        while(x >= 10)
+		int sum = 0;
+        int rem;
+        while(x != 0)
         {
             rem = x % 10;
+            x = x /10;
             if (sum > Integer.MAX_VALUE/10 || (sum == Integer.MAX_VALUE / 10 && rem > 7)) return 0;
             if (sum < Integer.MIN_VALUE/10 || (sum == Integer.MIN_VALUE / 10 && rem < -8)) return 0;
-            sum = (sum + rem) * 10;
-            x = x /10;
-            
+            sum = sum *10 + rem;
         }
-        sum = sum + x;
-        return sum * sign;
+        return sum;
     }
 	
 	public static boolean isPalindrom(int x)
@@ -221,14 +211,16 @@ public class IntegerProblem {
 	{
 		//int[] nums = {7,8,9,11,12};
 		//System.out.println(firstMissingPositive2(nums));
-		System.out.println(atoi("-2147483649"));
-		/*
+		//System.out.println(atoi("-2147483649"));
+		
 		int out = reverse(1534236469);
 		out = reverse(12345);
 		System.out.println(Integer.MAX_VALUE);
+		System.out.println(Integer.MAX_VALUE/10);
+		
+		/*
 		System.out.println(Integer.MIN_VALUE);
 		System.out.println(out);
-		/*
 		System.out.println(isPalindrom(121));
 		System.out.println(isPalindrom(12321));
 		System.out.println(isPalindrom(-121));
