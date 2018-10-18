@@ -1,6 +1,8 @@
 package practice;
 
+import java.util.ArrayList;
 import java.util.Stack;
+
 
 public class String_prb {
 	
@@ -292,12 +294,94 @@ public class String_prb {
 			return "1" + ret;
 		return ret;
 	}
-	
+	private static String insertCharAt(String st, int index, char c)
+	{
+		if (index < 0 || index > st.length())
+			throw new java.lang.RuntimeException("this is not quite as bad");
+		String out = "";
+		String first = st.substring(0, index);
+		String last = st.substring(index);
+		out = first + c + last;
+		return out;
+	}
+	private static ArrayList<String> getPermutations(String st)
+	{
+		if (st == null)
+			return null;
+		ArrayList<String> permutations = new ArrayList<String>();
+		if (st.length() == 0)
+		{
+			permutations.add(st);
+			return permutations;
+		}
+		char c = st.charAt(0);
+		String remainder = st.substring(1);
+		String tmp;
+		ArrayList<String> words = getPermutations(remainder);
+		for(String word: words)
+		{
+			for (int i =0; i <= word.length(); i++)
+			{
+				tmp = insertCharAt(word, i, c);
+				permutations.add(tmp);
+			}
+		}
+		return permutations;
+	}
+	private static void longestPalindromManacher(String st)
+	{
+		int newlen = st.length() * 2 + 3;
+		char[] T = new char [newlen];
+		int[] P = new int [newlen];
+		Array_prb.init_single_array(P, 0);
+		int i, j=0, R =0, C =0, mirr;
+		T[0] = '$';
+		int maxPal = 0, maxIndex = 0;
+		T[newlen - 1] = '@';
+		for ( i =1; i < newlen -1; i++)
+		{
+			if ( i % 2 == 0)
+				T[i] = st.charAt(j++);
+			else
+				T[i] = '#';
+		}
+		
+		for (i = 1; i < T.length -1; i++)
+		{
+			mirr = 2 * C - i;
+			if ( i < R)
+			{
+				P[i] = Math.min(R - i, P[mirr]);
+			}
+			while (T[i + (1 + P[i])] == T[i  - (1 + P[i])])
+			{
+				P[i]++;
+			}
+			if (P[i] > maxPal)
+			{
+				maxIndex = i;
+				maxPal = P[i];
+			}
+			if ( i + P[i] > R)
+			{
+				R = i + P[i];
+				C = i;
+			}
+		}
+		System.out.println("Max Pal length: " + maxPal);
+	}
 	static void test()
 	{
 		//String[] strs = {};
 		//String[] strs = {"flower","flow","flight"};
-		System.out.println(addBinary("1011", "1010"));
+		longestPalindromManacher("ABABABA");
+		/*
+		System.out.println(getPermutations(null));
+		System.out.println(getPermutations(""));
+		System.out.println(getPermutations("A"));
+		System.out.println(getPermutations("AB"));
+		System.out.println(getPermutations("ABCD"));
+		*/
 	}
 
 }

@@ -54,6 +54,11 @@ public class DynamicProgramming {
 			return Integer.max(res1, res2);
 		}
 	}
+	/**
+	 * Longest palidrom sub sequence
+	 * @param str
+	 * @return
+	 */
 	private int lps_dp(String str)
 	{
 		char arr[] = str.toCharArray();
