@@ -90,12 +90,33 @@ public class Employee {
 		}
 		return ret;
 	}
+	public static Employee FindCommonManager2(Employee ceo, Employee emp1, Employee emp2)
+	{
+		if (ceo == null)
+			return null;
+		Employee rp1=null, rp2=null;
+		for (Employee emp : ceo.reports) {
+			if (emp.emp_name.equals(emp1.emp_name) || emp.emp_name.equals(emp2.emp_name))
+				return ceo;
+			if(rp1 == null)
+				rp1 = FindCommonManager2(emp, emp1, emp2);
+			else
+				rp2 = FindCommonManager2(emp, emp1, emp2);
+				
+		}
+		if (rp1 !=null && rp2!=null)
+			return ceo;
+		if (rp1 != null)
+			return rp1;
+		return rp2;
+	}
 	public static void test_common_mgr()
 	{
-		Employee emp1 = new Employee("vp1");
+		Employee emp1 = new Employee("emp4");
 		Employee emp3 = new Employee("emp3");
 		Employee ceo = create_company();
-		FindCommonManager(ceo, emp1, emp3);
+		Employee com = FindCommonManager2(ceo, emp1, emp3);
+		System.out.println(com.emp_name);
 
 	}
 }
