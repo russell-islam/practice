@@ -277,6 +277,16 @@ public class Array_prb {
         	nums1[c--] = max;
         }
     }
+	public static int min_array(int[] nums)
+	{
+		int  min = Integer.MAX_VALUE;
+		for (int i =0; i < nums.length; i++)
+		{
+			if (nums[i] < min)
+				min = nums[i];
+		}
+		return min;
+	}
 	static void test()
 	{
 		int[] nums1 = {1,2,3,0,0,0};
