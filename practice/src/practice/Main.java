@@ -43,7 +43,7 @@ public class Main {
 		//Math_prb.test();
 		//StackQueueTest.test();
 		//BST.test();
-		Employee.test_common_mgr();
+		ArrayProlems.test();;
 	}
 
 }

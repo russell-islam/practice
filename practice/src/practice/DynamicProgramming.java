@@ -36,7 +36,7 @@ public class DynamicProgramming {
 		int arr[] = { 2, 4 , 6, 10};
 		int target = 16;
 		int[][] dp = new int[arr.length][target + 1];
-		Array_prb.init_2d(dp, -1);
+		ArrayProlems.init_2d(dp, -1);
 		System.out.println(dp_subset_sum(arr, target, arr.length - 1, dp));
 	}
 	private int lps_r(char[] arr, int start, int end)
@@ -64,7 +64,7 @@ public class DynamicProgramming {
 		char arr[] = str.toCharArray();
 		int len = arr.length;
 		int dp[][] = new int [len][len];
-		Array_prb.init_2d(dp, 0);
+		ArrayProlems.init_2d(dp, 0);
 		int i , j, k;
 		for( i = 0; i < len; i++)
 			dp[i][i] = 1;

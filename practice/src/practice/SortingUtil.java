@@ -14,10 +14,10 @@ public class SortingUtil {
 			
 			{
 				i++;
-				Array_prb.swap(arr, i, j);
+				ArrayProlems.swap(arr, i, j);
 			}
 		} 
-		Array_prb.swap(arr, high, i+1);
+		ArrayProlems.swap(arr, high, i+1);
 		return i + 1;
 	}
 	public void quickSort(int[] arr, int low, int high)
@@ -82,7 +82,7 @@ public class SortingUtil {
 		//int[] arr = {1, 100, 5 , 10, 70, 80 , 40, 25, 45};
 		int[] arr = {12, 11, 13, 5, 6, 7};
 		SortingUtil utl = new SortingUtil();
-		Array_prb.print_array(arr);
+		ArrayProlems.print_array(arr);
 		//utl.quickSort(arr, 0, arr.length-1);
 		//Array_prb.print_array(arr);
 		utl.heapSort(arr);

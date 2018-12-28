@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class Set_prb {
 	
-	public static void print_exatct_two(HashSet<Integer> a, HashSet<Integer> b, HashSet<Integer> c)
+	public static void print_exatct_two(Set<Integer> a, Set<Integer> b, Set<Integer> c)
 	{
 		
 	}

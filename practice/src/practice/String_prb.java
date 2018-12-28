@@ -333,7 +333,7 @@ public class String_prb {
 		int newlen = st.length() * 2 + 3;
 		char[] T = new char [newlen];
 		int[] P = new int [newlen];
-		Array_prb.init_single_array(P, 0);
+		ArrayProlems.init_single_array(P, 0);
 		int i, j=0, R =0, C =0, mirr;
 		T[0] = '$';
 		int maxPal = 0, maxIndex = 0;
