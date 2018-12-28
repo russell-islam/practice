@@ -123,8 +123,82 @@ public class DynamicProgramming {
     }
 	public static void test()
 	{
-		DynamicProgramming dp = new DynamicProgramming();
-		System.out.println(dp.climbStairsdp(3));
+		int[] primes = {2,3,5};
+		UglyNumber.print_ugly_235(15);
+		UglyNumber.print_ugly_generic(primes, 15);
 	}
 
+}
+class UglyNumber
+{
+	public static int min_3(int  x, int y, int z)
+	{
+		return  Math.min(Math.min(x,y),z);
+	}
+	public static void print_ugly_235(int range)
+	{
+		int i2 = 0, i3 = 0, i5 = 0;
+		int next_multiple2 = 2;
+		int next_multiple3 = 3;
+		int next_multiple5 = 5;
+		int ugly[] = new int[range];
+		
+		int count = 1;
+		int next_ugly =1;
+		ugly[0] = 1;
+		while (count < range)
+		{
+			next_ugly = min_3(next_multiple2, next_multiple3, next_multiple5);
+			ugly[count] = next_ugly;
+			if (next_ugly == next_multiple2)
+			{
+				i2++;
+				next_multiple2 = ugly[i2] * 2;
+			}
+			if (next_ugly == next_multiple3)
+			{
+				i3++;
+				next_multiple3 = ugly[i3] * 3;
+			}
+			if (next_ugly == next_multiple5)
+			{
+				i5++;
+				next_multiple5 = ugly[i5] * 5;
+			}
+			count++;
+		}
+		ArrayProlems.print_array(ugly);
+	}
+	public static void print_ugly_generic(int[] primes, int range)
+	{
+		int  len = primes.length;
+		int indexes[] = new int[primes.length];
+		int next_multiples[] = new int [primes.length];
+		// init next
+		for(int i =0; i < len; i++)
+		{
+			indexes[i] = 0;
+			next_multiples[i] = primes[i];
+		}
+		int ugly[] = new int[range];
+		
+		int count = 1;
+		int next_ugly =1;
+		ugly[0] = 1;
+		while (count < range)
+		{
+			next_ugly = ArrayProlems.min_array(next_multiples);
+			ugly[count] = next_ugly;
+			for(int i =0; i < len; i++)
+			{
+				if (next_multiples[i] == next_ugly)
+				{
+					indexes[i]++;
+				}
+				next_multiples[i] = primes[i] * ugly[indexes[i]];
+			}
+			count++;
+		}
+		ArrayProlems.print_array(ugly);
+	}
 }

@@ -303,9 +303,19 @@ public class ArrayProlems {
 		}
 		return ret;
 	}
+	public static int min_array(int[] nums)
+	{
+		int  min = Integer.MAX_VALUE;
+		for (int i =0; i < nums.length; i++)
+		{
+			if (nums[i] < min)
+				min = nums[i];
+		}
+		return min;
+	}
 	public static void testArrayWithFunc()
 	{
-		int a = -2, b = 5, c=10;
+		final int  a = -2, b = 5, c=10;
 		Integer []arr = {1, -5, 10, 50, 34, -40};
 		 Arrays.sort(arr, new Comparator<Integer>() {
 	            public int compare(Integer x1, Integer x2) {
