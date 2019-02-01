@@ -51,7 +51,7 @@ public class DynamicProgramming {
 		{
 			int res1 = lps_r(arr, start + 1, end);
 			int res2 = lps_r(arr, start, end -1);
-			return Integer.max(res1, res2);
+			return Utils.max(res1, res2);
 		}
 	}
 	/**
@@ -81,7 +81,7 @@ public class DynamicProgramming {
 				}
 				else
 				{
-					dp[i][j] = Integer.max(dp[i][j-1], dp[i+1][j]);
+					dp[i][j] = Utils.max(dp[i][j-1], dp[i+1][j]);
 				}
 			}
 		}

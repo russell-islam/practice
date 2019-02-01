@@ -59,7 +59,7 @@ public class ArrayProlems {
 			{
 				if(arr[i] ==  arr[low] + 1 && arr[j] == arr[low] + 2 && get_reduced_size(arr, low +1 , i -1, dp) == 0
 						&& get_reduced_size(arr, i +1 , j-1, dp) == 0)
-					res = Integer.min(res, get_reduced_size(arr, j+1, high, dp));
+					res = Utils.min(res, get_reduced_size(arr, j+1, high, dp));
 			}
 		}
 		
