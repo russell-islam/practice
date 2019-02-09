@@ -158,4 +158,64 @@ class ListNode
 		this.val = key;
 		this.next = next;
 	}
+	public ListNode(Object key, Object next)
+	{
+		this.val = (int)key;
+		this.next = (ListNode)next;
+	}
+	
+}
+class ListNodeChar
+{
+	char val;
+	ListNodeChar next;
+	public ListNodeChar(char key)
+	{
+		this.val = key;
+		this.next = null;
+	}
+	public ListNodeChar(char key, char next)
+	{
+		this.val = key;
+		this.next = new ListNodeChar(next);
+	}
+	public ListNodeChar(char key, ListNodeChar next)
+	{
+		this.val = key;
+		this.next = next;
+	}
+	public ListNodeChar(Object key, Object next)
+	{
+		this.val = (char)key;
+		this.next = (ListNodeChar)next;
+	}
+	public void addToTail(char c)
+	{
+		ListNodeChar p = this;
+		while ( p.next != null)
+			p = p.next;
+		p.next = new ListNodeChar(c);
+	}
+	public void print()
+	{
+		ListNodeChar p = this;
+		String out = "";
+		while ( p != null)
+		{
+			out += "-->" + p.val;
+			p = p.next;
+		}
+		System.out.println(out);
+	
+	}
+	public static void test()
+	{
+		ListNodeChar head = new ListNodeChar('a');
+		head.addToTail('b');
+		head.addToTail('c');
+		head.addToTail('d');
+		head.addToTail('e');
+		head.print();
+	}
+	
 }

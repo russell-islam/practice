@@ -212,5 +212,51 @@ public class List_prb {
 		list3.add("lmn");
 		print_dif_string_accross_lists(list1,list2, list3);
 	}
+	/*
+	 * a-->a-->a-->b-->d-->e-->e-->h 
+	 * output: a-->3-->b-->1-->d-->1-->e-->2-->h-->1
+	 * Number of consecutive chars <= 9
+	 */
+	public static ListNodeChar compressCharList(ListNodeChar head)
+	{
+		ListNodeChar p = head;
+		ListNodeChar out = new ListNodeChar(head.val);
+		int count = 1;
+		ListNodeChar q = p.next;
+		ListNodeChar temp = out;
+		
+		while(q != null)
+		{
+			if (p.val == q.val) {
+				count++;
+			}
+			else
+			{
+				temp.next = new ListNodeChar((char)(count + '0'));
+				temp.next.next = q;
+				temp = q;
+				count = 1;
+			}
+			p = q;
+			q = q.next;
+		}
+		temp.next = new ListNodeChar((char)(count + '0'));
+		
+		return out;
+	}
+	public static void testCompressCharList()
+	{
+		ListNodeChar head = new ListNodeChar('a');
+		head.addToTail('a');
+		head.addToTail('a');
+		head.addToTail('b');
+		head.addToTail('d');
+		head.addToTail('e');
+		head.addToTail('e');
+		head.addToTail('h');
+		ListNodeChar ret = compressCharList(head);
+		ret.print();
+		
+	}
 
 }

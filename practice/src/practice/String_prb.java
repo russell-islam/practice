@@ -328,6 +328,57 @@ public class String_prb {
 		}
 		return permutations;
 	}
+	public static int[] createLPSArray(String pattern)
+	{
+		int len = pattern.length();
+		char[] charArray = pattern.toCharArray();
+		int arr[] = new int [len];
+		int i =1, j =0;
+		
+		while (i < len)
+		{
+			if (charArray[i] == charArray[j])
+			{
+				arr[i] = arr[j] + 1;
+				j++;
+			}
+			else
+			{
+				j = arr[i-1];
+			}
+			i++;
+		}
+		return arr;
+	}
+	public static int kmpSubstringSearch(String str, String pat)
+	{
+		int[] lps = createLPSArray(pat);
+		int n = str.length(), m = pat.length();
+		int i =0, j=0;
+		while(i < n)
+		{
+			if (str.charAt(i) == pat.charAt(j)) {
+				j++;
+				i++;
+			}
+			else if( str.charAt(i) != pat.charAt(j) && i < n)
+			{
+				if (j != 0)
+				{
+					j = lps[j-1];
+				}
+				else
+				{
+					i++;
+				}
+			}
+			
+			if ( j== pat.length())
+				return i - j;
+		}
+		return -1;
+		
+	}
 	private static void longestPalindromManacher(String st)
 	{
 		int newlen = st.length() * 2 + 3;
@@ -374,7 +425,9 @@ public class String_prb {
 	{
 		//String[] strs = {};
 		//String[] strs = {"flower","flow","flight"};
-		longestPalindromManacher("ABABABA");
+		//longestPalindromManacher("ABABABA");
+		int index = kmpSubstringSearch("xabacdabacde", "abacdef");
+		System.out.println("Pattern found ar index: " + index);
 		/*
 		System.out.println(getPermutations(null));
 		System.out.println(getPermutations(""));
