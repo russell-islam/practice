@@ -46,7 +46,8 @@ public class Main {
 
 		//ArrayProlems.test();;
 		//Employee.test_common_mgr();
-		List_prb.testCompressCharList();;
+		//List_prb.testCompressCharList();;
+		PriorityQueueProb.test();
 
 	}
 
