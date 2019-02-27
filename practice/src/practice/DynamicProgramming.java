@@ -123,9 +123,10 @@ public class DynamicProgramming {
     }
 	public static void test()
 	{
-		int[] primes = {2,3,5};
-		UglyNumber.print_ugly_235(15);
-		UglyNumber.print_ugly_generic(primes, 15);
+		//int[] primes = {2,3,5};
+		//UglyNumber.print_ugly_235(15);
+		//UglyNumber.print_ugly_generic(primes, 15);
+		LCS.test();
 	}
 
 }
@@ -200,5 +201,40 @@ class UglyNumber
 			count++;
 		}
 		ArrayProlems.print_array(ugly);
+	}
+}
+class LCS{
+	public int lcs(char[] X, char[] Y)
+	{
+	    int m = X.length; 
+	    int n = Y.length;
+	    int L[][] = new int[m+1][n+1];
+	    int i, j;
+	    for (i = 0; i <= m; i++)
+	    {
+	    	for (j = 0; j <= n; j++)
+	    	{
+	    		if (i == 0 || j == 0)
+	    			L[i][j] = 0;
+	    		else if ( X[i-1] == Y[j-1])
+	    			L[i][j] = L[i-1][j-1] + 1;
+	    		else
+	    			L[i][j] = Integer.max(L[i-1][j], L[i][j-1]);
+	    	}
+	    }
+		return L[m][n];
+	}
+	public int lcs(String s1, String s2)
+	{
+		return lcs(s1.toCharArray(), s2.toCharArray());
+	}
+	public static void test()
+	{
+		LCS lcs = new LCS(); 
+	    String s1 = "AGGTAB"; 
+	    String s2 = "GXTXAYB"; 
+	  
+	    System.out.println("Length of LCS is" + " " + 
+	                                  lcs.lcs( s1, s2) ); 
 	}
 }
