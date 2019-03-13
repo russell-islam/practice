@@ -1,6 +1,8 @@
 package practice;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 
@@ -426,8 +428,9 @@ public class String_prb {
 		//String[] strs = {};
 		//String[] strs = {"flower","flow","flight"};
 		//longestPalindromManacher("ABABABA");
-		int index = kmpSubstringSearch("xabacdabacde", "abacdef");
-		System.out.println("Pattern found ar index: " + index);
+		//int index = kmpSubstringSearch("xabacdabacde", "abacdef");
+		//System.out.println("Pattern found ar index: " + index);
+		System.out.println(addStrings("98", "9"));
 		/*
 		System.out.println(getPermutations(null));
 		System.out.println(getPermutations(""));
@@ -436,5 +439,123 @@ public class String_prb {
 		System.out.println(getPermutations("ABCD"));
 		*/
 	}
+	public static boolean wordPattern(String pattern, String str) {
+		String[] maps = new String[26];
+        String[] array = str.split(" ");
+        Map<String, Character> stringMap = new HashMap<>();
+        if (pattern.length() != array.length) return false;
+        int index;
+        for (int i = 0; i < array.length; i++) {
+            index = (int)(pattern.charAt(i) - 'a');
+            if (maps[index] == null){
+                maps[index] = array[i];
+            }
+            else if(!maps[index].equals(array[i])) return false;
+            if (stringMap.containsKey(array[i])) {
+                if(stringMap.get(array[i]) != pattern.charAt(i)) return false;
+            }
+            else
+                stringMap.put(array[i], pattern.charAt(i));
+        }
+        return true;
+    }
+	public static String reverseVowels(String s) {
+        char[] arr = s.toCharArray();
+        int i = 0, j = arr.length -1, ct;
+        char c;
+        while( i < j) {
+            ct = 0;
+            if(!isVowel(arr[i])) {
+                i++;
+                ct++;
+            };
+            if(!isVowel(arr[j])){
+                j--;
+                ct++;
+            }
+            if (ct ==0){
+                c = arr[i];
+                arr[i] = arr[j];
+                arr[j] =c;
+                i++; j--;
+            }
+        }
+        return String.valueOf(arr);
+    }
+    private static boolean isVowel(char c)
+    {
+        return "AEIOUaeiou".indexOf(c) != -1;
+    }
+	public static boolean isAlphaNumeric(char c)
+	{
+		if (Character.isDigit(c) || Character.isLetter(c))
+			return true;
+		return false;
+	}
+	public static boolean isPalindrome(String s) {
+        char[] arr = s.toCharArray();
+        int i = 0;
+        int j = arr.length -1;
+        char a, b;
+        while(i < j)
+        {
+        	a = arr[i];
+        	b= arr[j];
+            if (!(Character.isDigit(arr[i]) || Character.isLetter(arr[i])))
+            {
+                i++;
+                continue;
+            }
+            if (!(Character.isDigit(arr[j]) || Character.isLetter(arr[j])))
+            {
+                j--;
+                continue;
+            }
+            if (Character.toUpperCase(arr[i]) != Character.toUpperCase(arr[j]))
+                return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+	public static String convertToTitle(int n) {
+		return n == 0 ? "" : convertToTitle(--n / 26) + (char)('A' + (n % 26));
+        
+    }
+	public static String addStrings(String num1, String num2) {
+        if (num1.length() == 0) return num2;
+        if (num2.length() == 0) return num1;
+        if (num1.length() < num2.length()) {
+            String tmp = num2;
+            num2 = num1;
+            num1 = tmp;
+        }
+        int carry = 0;
+        String out="";
+        char[] arr1 = num1.toCharArray();
+        char[] arr2 = num2.toCharArray();
+        int i = arr2.length - 1;
+        int j = arr1.length -1;
+        int sum;
+        while(i >= 0){
+            sum = carry + (int)(arr2[i] - '0') + (int)(arr1[j] - '0');
+           
+            carry = sum /10;
+            sum = sum % 10;
+            out = sum + out;
+            i--;
+            j--;
+        }
+
+        while(j >= 0) {
+            sum = carry + (int)(arr1[j] - '0');
+            carry = sum /10;
+            sum = sum % 10;
+            out = sum + out;
+            j--;
+        }
+        if (carry > 0) out = carry + out;
+        return out;
+    }
 
 }

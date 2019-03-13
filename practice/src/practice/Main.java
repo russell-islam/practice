@@ -32,7 +32,7 @@ public class Main {
 		//int res = Multiply(10, 15);
 		//System.out.println(res);
 		//GeneralGraph.main();
-		DynamicProgramming.test();
+		//DynamicProgramming.test();
 		//String_prb.test();
 		//SortingUtil.test();
 		//Array_prb.test();
@@ -42,7 +42,7 @@ public class Main {
 		//String_prb.test();
 		//Math_prb.test();
 		//StackQueueTest.test();
-		//BST.test();
+		BST.test();
 
 		//ArrayProlems.test();;
 		//Employee.test_common_mgr();

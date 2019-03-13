@@ -79,7 +79,7 @@ public class BST {
 		System.out.println(bst.isPerfect(bt));
 		System.out.println(bst.isPerfect(st));
 		System.out.println(bst.isPerfect(pbt));
-		*/
+
 		TreeNode root1 = bst.CreateBinaryTree();
 		TreeNode root2 = bst.CreateBinaryTree();
 		TreeNode root3 = bst.createPerfectBinaryTree();
@@ -87,7 +87,21 @@ public class BST {
 		System.out.println(bst.isSameTree(root1, null));
 		System.out.println(bst.isSameTree(null, root2));
 		System.out.println(bst.isSameTree(root1, root3));
+		*/
+		System.out.println(bst.pathSum(bst.createLCBT(), 8));
 	}
+	public int pathSum(TreeNode root, int sum) {
+		int count = findPathWithRoot(root, sum);
+        if (root != null) count += pathSum(root.left, sum) + pathSum(root.right, sum); //add case when root is excluded.
+        return count;
+    }
+	private int findPathWithRoot(TreeNode root, int sum) { //Must contain root.val when calculating sum.
+        if (root == null) return 0;
+        int count = 0;
+        if (root.val == sum) count = 1;
+        
+        return count + findPathWithRoot(root.left, sum - root.val) + findPathWithRoot(root.right, sum - root.val);
+    }
 	private TreeNode flattenHelper(TreeNode root)
 	{
 		if (root == null || (root.left == null && root.right == null))
@@ -173,6 +187,22 @@ public class BST {
 		TreeNode node2 = new TreeNode(2, node4, node5);
 		TreeNode node3 = new TreeNode(3, node6, node7);
 		return new TreeNode(1, node2, node3);
+	}
+	/*
+			10
+		    /  \
+		   5   -3
+		  / \    \
+		 3   2   11
+		/ \   \
+		3  -2   1
+	*/
+	private TreeNode createLCBT() {
+		TreeNode root = new TreeNode(10);
+		TreeNode n3 = new TreeNode(3, new TreeNode(3), new TreeNode(-2));
+		root.left = new TreeNode(5, n3, new TreeNode(2, null, new TreeNode(1)));
+		root.right = new TreeNode(-3, null, new TreeNode(11));
+		return root;
 	}
 	public boolean isBST(TreeNode root)
 	{

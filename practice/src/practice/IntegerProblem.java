@@ -213,10 +213,10 @@ public class IntegerProblem {
 		//System.out.println(firstMissingPositive2(nums));
 		//System.out.println(atoi("-2147483649"));
 		
-		int out = reverse(1534236469);
-		out = reverse(12345);
-		System.out.println(Integer.MAX_VALUE);
-		System.out.println(Integer.MAX_VALUE/10);
+		//int out = reverse(1534236469);
+		//out = reverse(12345);
+		//System.out.println(Integer.MAX_VALUE);
+		System.out.println(power(5,2));
 		
 		/*
 		System.out.println(Integer.MIN_VALUE);
@@ -228,6 +228,18 @@ public class IntegerProblem {
 		System.out.println(isPalindrom(123456));
 		System.out.println(Integer.MAX_VALUE);
 		*/
+	}
+	public static int power(int x, int y)
+	{
+		int ret =1;
+		if ( y == 0)
+			return ret;
+		if ( y== 1)
+			return x;
+		int half = power(x, y/2);
+		if (y % 2 == 0)
+			return half * half;
+		return x * half * half;
 	}
 
 }
