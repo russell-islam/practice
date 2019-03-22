@@ -34,7 +34,7 @@ public class Main {
 		//GeneralGraph.main();
 		//DynamicProgramming.test();
 		//String_prb.test();
-		//SortingUtil.test();
+		SortingUtil.test();
 		//Array_prb.test();
 		//LinkList.test();
 		//IntegerProblem.test();
@@ -42,7 +42,7 @@ public class Main {
 		//String_prb.test();
 		//Math_prb.test();
 		//StackQueueTest.test();
-		BST.test();
+		//BST.test();
 
 		//ArrayProlems.test();;
 		//Employee.test_common_mgr();
